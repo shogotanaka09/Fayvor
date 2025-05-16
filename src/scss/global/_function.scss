@@ -1,0 +1,13 @@
+@use "sass:math";
+
+@function get-sp-vw($value) {
+  @return math.div($value, 750) * 100vw;
+}
+
+@function get-pc-vw($value, $base: 1440) {
+  @return math.div($value, $base) * 100vw;
+}
+
+@function get-ratio($value, $base) {
+  @return math.div($value, $base) * 100%;
+}

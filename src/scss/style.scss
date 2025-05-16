@@ -1,0 +1,9 @@
+@use "sass:map";
+@use "global" as *;
+@use "others/destyle";
+@use "others/reset";
+@use "components/header";
+@use "sections/sample/sample";
+
+/* stylelint-disable-next-line scss/at-rule-no-unknown */
+@tailwind utilities;
