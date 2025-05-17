@@ -83,11 +83,80 @@ window.addEventListener('DOMContentLoaded', function () {
     requestAnimationFrame(raf)
   }
 
-  function initThumbnail() {
-    const thumbnailList = document.querySelector('.js-thumbnail-list')
+  function initPagination() {
+    const pagination = document.querySelector('.js-pagination')
+    const paginationNum = pagination.querySelector('.js-pagination-num')
+    if (!pagination || !paginationNum) return
+
+    const imgItems = document.querySelectorAll('.js-img-item')
+    if (!imgItems.length) return
+
+    // 現在表示中の画像のインデックスを取得する関数
+    const getCurrentIndex = () => {
+      const viewportCenter = window.innerHeight / 2
+      let currentIndex = 0
+      let minDistance = Infinity
+
+      imgItems.forEach((item, index) => {
+        const rect = item.getBoundingClientRect()
+        const itemCenter = rect.top + rect.height / 2
+        const distance = Math.abs(viewportCenter - itemCenter)
+
+        if (distance < minDistance) {
+          minDistance = distance
+          currentIndex = index
+        }
+      })
+
+      return currentIndex
+    }
+
+    // 数字を更新する関数
+    const updateNumber = (index) => {
+      const newNumber = `( ${String(index + 1).padStart(2, '0')} )`
+      const currentNumber = paginationNum.textContent
+
+      if (currentNumber === newNumber) return
+
+      // フェードアウト
+      gsap.to(paginationNum, {
+        opacity: 0,
+        duration: 0.3,
+        onComplete: () => {
+          // 数字を更新
+          paginationNum.textContent = newNumber
+          // フェードイン
+          gsap.to(paginationNum, {
+            opacity: 1,
+            duration: 0.3
+          })
+        }
+      })
+    }
+
+    let lastIndex = getCurrentIndex()
+    let ticking = false
+
+    // スクロール時に数字を更新
+    window.addEventListener('scroll', () => {
+      if (!ticking) {
+        window.requestAnimationFrame(() => {
+          const currentIndex = getCurrentIndex()
+          if (currentIndex !== lastIndex) {
+            updateNumber(currentIndex)
+            lastIndex = currentIndex
+          }
+          ticking = false
+        })
+        ticking = true
+      }
+    })
+
+    // 初期表示時にも数字を設定
+    updateNumber(getCurrentIndex())
   }
 
-  initThumbnail()
+  initPagination()
 
   function initWebGL() {
     const canvasEl = document.getElementById('webgl-canvas')
@@ -262,10 +331,13 @@ window.addEventListener('DOMContentLoaded', function () {
   initWebGL()
 
   function initTime() {
-    const time = document.querySelector('.js-time')
+    const timeEl = document.querySelector('.js-time')
     const updateTime = () => {
       const now = new Date()
-      const formattedDate = now
+      const weekdays = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat']
+      const weekday = weekdays[now.getDay()]
+
+      const date = now
         .toLocaleString('ja-JP', {
           year: 'numeric',
           month: '2-digit',
@@ -276,7 +348,16 @@ window.addEventListener('DOMContentLoaded', function () {
           hour12: false
         })
         .replace(/\//g, '/')
-      time.textContent = formattedDate
+        .split(' ')[0] // 日付部分のみ取得
+
+      const timeStr = now.toLocaleString('ja-JP', {
+        hour: '2-digit',
+        minute: '2-digit',
+        second: '2-digit',
+        hour12: false
+      })
+
+      timeEl.textContent = `${date} ${weekday} ${timeStr}`
     }
     updateTime()
     setInterval(updateTime, 1000)

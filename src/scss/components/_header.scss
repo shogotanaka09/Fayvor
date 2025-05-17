@@ -17,6 +17,7 @@
   display: flex;
   flex-direction: column-reverse;
   gap: 4px;
+  position: relative;
 
   @include mq($from: desktop) {
     gap: 0;
@@ -41,7 +42,31 @@
   font-size: 18px;
 
   @include mq($from: desktop) {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
     font-size: 20px;
+  }
+}
+
+.header__other {
+  display: flex;
+  align-items: center;
+  font-size: 13px;
+  gap: 5px;
+  @include mq($from: desktop) {
+    display: block;
+  }
+}
+
+.header__unit {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+
+  @include mq($from: desktop) {
+    display: block;
   }
 }
 
@@ -53,7 +78,3 @@
   }
 }
 
-
-.header__time {
-  font-size: 13px;
-}

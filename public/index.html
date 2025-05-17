@@ -52,19 +52,31 @@
   <body class="is-fixed">
     <div class="opening js-opening">
       <div class="opening__inner">
-        <p class="opening__catch js-opening-catch"><span>F</span><span>A</span><span>Y</span><span>V</span><span>O</span><span>R</span></p>
+        <p class="opening__catch js-opening-catch">
+          <span>F</span><span>A</span><span>Y</span><span>V</span><span>O</span><span>R</span>
+        </p>
       </div>
     </div>
     <!-- /opening -->
     <header class="header">
       <div class="header__inner">
         <p class="header__intro">
-          This is a personal project<br />I created with the goal of releasing it<br />publicly for the first time.<br />It's
-          an experimental site using WebGL.
+          (Overview)<br />This is a personal project<br class="hidden desktop:block" /> I created with the goal of
+          releasing it<br />publicly for the first time.<br class="hidden desktop:block" /> It's an experimental site
+          using WebGL.
         </p>
         <div class="header__group">
           <h1 class="header__logo">FAYVOR</h1>
-          <p class="header__time js-time"></p>
+          <div class="header__other">
+            <div class="header__unit">
+              <p class="header__other-text">(Other)</p>
+              <p class="header__other-cont js-time"></p>
+            </div>
+            <div class="header__unit">
+              <p class="header__other-text">(Tech)</p>
+              <p class="header__other-cont">three</p>
+            </div>
+          </div>
         </div>
       </div>
     </header>
@@ -75,7 +87,7 @@
         <div class="scrollable">
           <div class="cont">
             <div class="over">
-              <p class="text">(thumbnail)</p>
+              <p class="text hidden desktop:block">(pagination)</p>
               <div class="target">
                 <span></span>
                 <span></span>
@@ -83,63 +95,8 @@
               <p class="text">(Image)</p>
             </div>
 
-            <div class="thumbnail hidden desktop:block">
-              <ul class="thumbnail-list js-thumbnail-list">
-                <li class="js-thumbnail-item">
-                  <img src="./assets/img/fayvor_01.webp" alt="" width="559" height="980" loading="lazy" />
-                </li>
-                <li class="js-thumbnail-item">
-                  <img src="./assets/img/fayvor_02.webp" alt="" width="923" height="1000" loading="lazy" />
-                </li>
-                <li class="js-thumbnail-item">
-                  <img src="./assets/img/fayvor_03.webp" alt="" width="1000" height="1504" loading="lazy" />
-                </li>
-                <li class="js-thumbnail-item">
-                  <img src="./assets/img/fayvor_04.webp" alt="" width="728" height="1296" loading="lazy" />
-                </li>
-                <li class="js-thumbnail-item">
-                  <img src="./assets/img/fayvor_05.webp" alt="" width="934" height="1401" loading="lazy" />
-                </li>
-                <li class="js-thumbnail-item">
-                  <img src="./assets/img/fayvor_06.webp" alt="" width="890" height="1339" loading="lazy" />
-                </li>
-                <li class="js-thumbnail-item">
-                  <img src="./assets/img/fayvor_07.webp" alt="" width="952" height="1429" loading="lazy" />
-                </li>
-                <li class="js-thumbnail-item">
-                  <img src="./assets/img/fayvor_08.webp" alt="" width="1040" height="780" loading="lazy" />
-                </li>
-                <li class="js-thumbnail-item">
-                  <img src="./assets/img/fayvor_09.webp" alt="" width="712" height="1068" loading="lazy" />
-                </li>
-                <li class="js-thumbnail-item">
-                  <img src="./assets/img/fayvor_10.webp" alt="" width="512" height="768" loading="lazy" />
-                </li>
-                <li class="js-thumbnail-item">
-                  <img src="./assets/img/fayvor_11.webp" alt="" width="998" height="1496" loading="lazy" />
-                </li>
-                <li class="js-thumbnail-item">
-                  <img src="./assets/img/fayvor_12.webp" alt="" width="828" height="1355" loading="lazy" />
-                </li>
-                <li class="js-thumbnail-item">
-                  <img src="./assets/img/fayvor_13.webp" alt="" width="1040" height="1560" loading="lazy" />
-                </li>
-                <li class="js-thumbnail-item">
-                  <img src="./assets/img/fayvor_14.webp" alt="" width="864" height="1296" loading="lazy" />
-                </li>
-                <li class="js-thumbnail-item">
-                  <img src="./assets/img/fayvor_15.webp" alt="" width="810" height="1255" loading="lazy" />
-                </li>
-                <li class="js-thumbnail-item">
-                  <img src="./assets/img/fayvor_16.webp" alt="" width="1228" height="1840" loading="lazy" />
-                </li>
-                <li class="js-thumbnail-item">
-                  <img src="./assets/img/fayvor_17.webp" alt="" width="1000" height="1500" loading="lazy" />
-                </li>
-                <li class="js-thumbnail-item">
-                  <img src="./assets/img/fayvor_18.webp" alt="" width="1125" height="1500" loading="lazy" />
-                </li>
-              </ul>
+            <div class="pagination js-pagination">
+              <p class="pagination__num js-pagination-num"></p>
             </div>
 
             <ul class="img-list js-img-list">
@@ -205,7 +162,7 @@
 
     <footer class="footer">
       <div class="footer__inner">
-        <small class="footer__cr"> &copy;2025 FAYVOR </small>
+        <small class="footer__cr"> &copy;2025 FAYVOR(shogo tanaka)<br />with Unsplash</small>
         <div class="footer__target desktop:hidden">
           <span></span>
           <span></span>
