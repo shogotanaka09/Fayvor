@@ -3,10 +3,64 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import Lenis from '@studio-freight/lenis'
 import * as THREE from 'three'
 
-document.addEventListener('DOMContentLoaded', function () {
+window.addEventListener('DOMContentLoaded', function () {
   gsap.registerPlugin(ScrollTrigger)
 
-  // スマートフォンの判定
+  function opening() {
+    const openingEl = document.querySelector('.js-opening')
+    const openingCatchEl = document.querySelector('.js-opening-catch')
+    if (!openingEl || !openingCatchEl) return
+
+    const tl = gsap.timeline()
+    const spans = openingCatchEl.querySelectorAll('span')
+
+    tl.to(spans, {
+      yPercent: 0,
+      duration: 0.1,
+      ease: 'power2.out'
+    })
+
+    tl.to(
+      spans,
+      {
+        yPercent: (index) => (index % 2 === 0 ? -105 : 105),
+        duration: 1.5,
+        stagger: 0
+      },
+      '+=0.8'
+    )
+
+    tl.to(
+      spans,
+      {
+        yPercent: (index) => (index % 2 === 0 ? -210 : 210),
+        duration: 1.5,
+        stagger: 0
+      },
+      '+=0.8'
+    )
+
+    tl.to(
+      openingEl,
+      {
+        yPercent: -105,
+        duration: 1.2,
+        ease: 'power2.inOut'
+      },
+      '+=0.8'
+    )
+
+    // 4. 最後にopacityを0に
+    tl.to(openingEl, {
+      opacity: 0,
+      duration: 0.5,
+      onComplete: () => {
+        document.body.classList.remove('is-fixed')
+      }
+    })
+  }
+  opening()
+
   const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent)
 
   // スマートフォンでない場合のみLenisを初期化
