@@ -1,7 +1,7 @@
 @use "sass:math";
 
 @function get-sp-vw($value) {
-  @return math.div($value, 750) * 100vw;
+  @return math.div($value, 375) * 100vw;
 }
 
 @function get-pc-vw($value, $base: 1440) {

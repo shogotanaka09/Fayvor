@@ -1,9 +1,122 @@
-@use "sass:map";
-@use "global" as *;
-@use "others/destyle";
-@use "others/reset";
-@use "components/header";
-@use "sections/sample/sample";
+@use 'sass:map';
+@use 'global' as *;
+@use 'others/destyle';
+@use 'others/reset';
+@use 'components/_header.scss';
+@use 'components/_footer.scss';
 
 /* stylelint-disable-next-line scss/at-rule-no-unknown */
 @tailwind utilities;
+
+.cont {
+  height: 100vh;
+
+  @include mq($from: desktop) {
+    gap: get-pc-vw(300);
+  }
+}
+
+.img-list {
+  display: flex;
+  flex-direction: column;
+  width: get-sp-vw(200);
+  padding-block: 15vh;
+  margin-inline: auto;
+
+  @include mq($from: desktop) {
+    width: get-pc-vw(400);
+    align-items: center;
+    justify-content: center;
+    margin-left: auto;
+    margin-right: get-pc-vw(170);
+  }
+
+  li {
+    opacity: 0;
+    &:not(:first-child) {
+      margin-top: get-sp-vw(30);
+      @include mq($from: desktop) {
+        margin-top: get-pc-vw(100);
+      }
+    }
+
+    img {
+      aspect-ratio: 2 / 3;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+  }
+}
+
+.over {
+  position: fixed;
+  inset: 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-inline: 12px;
+
+  @include mq($from: desktop) {
+    padding-inline: get-pc-vw(20);
+  }
+
+  .text {
+    @include mq($from: desktop) {
+      font-size: 12px;
+    }
+  }
+
+  .target {
+    position: relative;
+    span {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      display: inline-block;
+      background-color: var(--color-white);
+      transform: translate(-50%, -50%);
+      @include mq($from: desktop) {
+        width: get-pc-vw(1);
+        height: get-pc-vw(16);
+      }
+
+      &:first-child {
+        transform: translate(-50%, -50%) rotate(90deg);
+      }
+    }
+  }
+}
+
+.thumbnail {
+  position: fixed;
+  margin-block: auto;
+  overflow: hidden;
+
+  @include mq($from: desktop) {
+    left: get-pc-vw(400);
+    top: 50%;
+    transform: translateY(-50%);
+    width: get-pc-vw(100);
+    aspect-ratio: 1 / 1;
+  }
+}
+
+.thumbnail-list {
+  position: absolute;
+  top: 0;
+  display: flex;
+  flex-direction: column;
+  @include mq($from: desktop) {
+    gap: get-pc-vw(100);
+  }
+
+  li {
+    img {
+      aspect-ratio: 1 / 1;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+  }
+}

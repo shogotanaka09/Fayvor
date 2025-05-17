@@ -1,0 +1,44 @@
+@use 'sass:math';
+@use 'sass:map';
+@use '../global' as *;
+
+.footer {
+  position: fixed;
+  z-index: 1;
+  bottom: 0;
+  width: 100%;
+}
+
+.footer__inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20px 12px;
+  width: 100%;
+
+  @include mq($from: desktop) {
+    padding: get-pc-vw(20);
+  }
+}
+.footer__cr {
+  font-size: 11px;
+}
+
+.footer__target {
+  position: relative;
+  margin-right: 20px;
+  span {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    display: inline-block;
+    background-color: var(--color-white);
+    transform: translate(-50%, -50%);
+    width: 1px;
+    height: 14px;
+
+    &:first-child {
+      transform: translate(-50%, -50%) rotate(90deg);
+    }
+  }
+}
